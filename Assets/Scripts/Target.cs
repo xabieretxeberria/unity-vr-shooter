@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class Target : MonoBehaviour
 {
     [SerializeField]
+    private Enemy enemy;
+
+    [SerializeField]
     private float loadTime;
 
     [SerializeField]
@@ -43,6 +46,11 @@ public class Target : MonoBehaviour
 
     private void LoadComplete()
     {
-        StopLoading();
+        DestroyEnemy();
+    }
+
+    private void DestroyEnemy()
+    {
+        enemy.Destroy();
     }
 }
