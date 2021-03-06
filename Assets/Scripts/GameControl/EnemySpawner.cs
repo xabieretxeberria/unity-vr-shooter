@@ -29,6 +29,8 @@ public class EnemySpawner : MonoBehaviour
         InitializeEnemyPool();
         InitializeSpawnPoints();
 
+        SpawnEnemy();
+
         spawnFrecuencyCounter = spawnFrecuency;
     }
 

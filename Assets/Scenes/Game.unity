@@ -164,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5670b3f7e506fa44acfa827d4d5d422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instance: {fileID: 0}
   gameCompleteScreen: {fileID: 0}
   gameFailedScreen: {fileID: 0}
 --- !u!1001 &38038456
@@ -1818,7 +1817,7 @@ PrefabInstance:
     - target: {fileID: 7354762823487169236, guid: a6a9c1b43a06ccc439097e81ee09ee00,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7354762823487169236, guid: a6a9c1b43a06ccc439097e81ee09ee00,
         type: 3}
