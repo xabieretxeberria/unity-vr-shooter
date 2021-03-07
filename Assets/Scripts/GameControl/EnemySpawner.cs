@@ -24,6 +24,10 @@ public class EnemySpawner : MonoBehaviour
     private Transform spawnPoints;
     private Vector3[] spawnPointsPositions;
 
+    private void OnEnable()
+    {
+    }
+
     private void Start()
     {
         InitializeEnemyPool();
@@ -70,7 +74,6 @@ public class EnemySpawner : MonoBehaviour
 
         int i = 0;
         foreach (Transform child in spawnPoints) {
-            //spawnPointsPositions[i] = child.position;
             spawnPointsPositions[i] = new Vector3(child.position.x, child.position.y - 1, child.position.z);
             i++;
         }

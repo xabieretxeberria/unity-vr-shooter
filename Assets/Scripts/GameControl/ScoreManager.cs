@@ -40,4 +40,9 @@ public class ScoreManager : MonoBehaviour
         destroyedEnemiesText.text = destroyedEnemies.ToString();
         scoreText.text = score.ToString();
     }
+
+    public int GetScore()
+    {
+        return score;
+    }
 }

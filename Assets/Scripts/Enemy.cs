@@ -14,6 +14,18 @@ public class Enemy : MonoBehaviour
     private const float PLAYER_REACHED_DISTANCE = 1.6f;
     private static bool playerReached = false;
 
+    private void OnEnable()
+    {
+        GameController.instance.gameFailedReleased += OnGameFailed;
+        GameController.instance.gameCompleteReleased += OnGameComplete;
+    }
+
+    private void OnDisable()
+    {
+        GameController.instance.gameFailedReleased -= OnGameFailed;
+        GameController.instance.gameCompleteReleased -= OnGameComplete;
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -62,5 +74,15 @@ public class Enemy : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+    }
+
+    private void OnGameFailed()
+    {
+        Stop();
+    }
+
+    private void OnGameComplete()
+    {
+        Stop();
     }
 }

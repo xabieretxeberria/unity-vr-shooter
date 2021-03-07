@@ -12,19 +12,15 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject gameFailedScreen;
 
+    public delegate void gameFailed();
+    public event gameFailed gameFailedReleased;
+
+    public delegate void gameComplete();
+    public event gameComplete gameCompleteReleased;
+
     private void Awake()
     {
         Singleton();
-    }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
     }
 
     private void Singleton()
@@ -40,11 +36,19 @@ public class GameController : MonoBehaviour
 
     public void GameFailed()
     {
-        Debug.Log("Game Failed");
+        if (gameFailedReleased == null) return;
+
+        gameFailedReleased();
+
+        gameFailedScreen.SetActive(true);
     }
 
     public void GameComplete()
     {
-        Debug.Log("Game Complete!");
+        if (gameCompleteReleased == null) return;
+
+        gameCompleteReleased();
+
+        gameCompleteScreen.SetActive(true);
     }
 }
