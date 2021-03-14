@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     // Patrón Object Pool
     [SerializeField]
     private Transform enemyPool;
-    private const int ENEMY_POOL_SIZE = 10;
+    private const int ENEMY_POOL_SIZE = 5;
     private GameObject[] enemies;
     private int enemyNumber;
 

@@ -46,6 +46,11 @@ public class Target : MonoBehaviour
 
     private void LoadComplete()
     {
+        StopLoading();
+
+        fillImage.fillAmount = 0;
+        loadTimeCounter = 0;
+
         DestroyEnemy();
     }
 
