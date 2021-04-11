@@ -12,16 +12,18 @@ public class Enemy : MonoBehaviour
     public static Transform player;
 
     private const float PLAYER_REACHED_DISTANCE = 1.6f;
-    private static bool playerReached = false;
+    private static bool followPlayer = true;
 
     private void OnEnable()
     {
+        GameController.instance.gameStartReleased += OnGameStart;
         GameController.instance.gameFailedReleased += OnGameFailed;
         GameController.instance.gameCompleteReleased += OnGameComplete;
     }
 
     private void OnDisable()
     {
+        GameController.instance.gameStartReleased -= OnGameStart;
         GameController.instance.gameFailedReleased -= OnGameFailed;
         GameController.instance.gameCompleteReleased -= OnGameComplete;
     }
@@ -39,17 +41,14 @@ public class Enemy : MonoBehaviour
         transform.LookAt(lookPosition);
 
         if (PlayerReached()) {
-            playerReached = true;
+            Stop();
+            GameController.instance.GameFailed();
         }
     }
 
     private void FixedUpdate()
     {
-        if (playerReached) {
-            Stop();
-            GameController.instance.GameFailed();
-            return;
-        }
+        if (!followPlayer) return;
 
         rb.velocity = transform.forward * speed;
     }
@@ -74,6 +73,12 @@ public class Enemy : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        followPlayer = false;
+    }
+
+    private void OnGameStart()
+    {
+        followPlayer = true;
     }
 
     private void OnGameFailed()

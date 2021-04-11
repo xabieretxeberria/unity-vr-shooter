@@ -6,11 +6,8 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance;
 
-    [SerializeField]
-    private GameObject gameCompleteScreen;
-
-    [SerializeField]
-    private GameObject gameFailedScreen;
+    public delegate void gameStart();
+    public event gameStart gameStartReleased;
 
     public delegate void gameFailed();
     public event gameFailed gameFailedReleased;
@@ -21,6 +18,11 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         Singleton();
+    }
+
+    private void Start()
+    {
+        StartGame();
     }
 
     private void Singleton()
@@ -34,13 +36,18 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void StartGame()
+    {
+        if (gameStartReleased == null) return;
+
+        gameStartReleased();
+    }
+
     public void GameFailed()
     {
         if (gameFailedReleased == null) return;
 
         gameFailedReleased();
-
-        gameFailedScreen.SetActive(true);
     }
 
     public void GameComplete()
@@ -48,7 +55,5 @@ public class GameController : MonoBehaviour
         if (gameCompleteReleased == null) return;
 
         gameCompleteReleased();
-
-        gameCompleteScreen.SetActive(true);
     }
 }

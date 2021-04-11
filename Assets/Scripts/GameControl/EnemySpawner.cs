@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -23,10 +21,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private Transform spawnPoints;
     private Vector3[] spawnPointsPositions;
-
-    private void OnEnable()
-    {
-    }
 
     private void Start()
     {

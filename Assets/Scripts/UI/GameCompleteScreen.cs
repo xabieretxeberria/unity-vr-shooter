@@ -16,6 +16,16 @@ public class GameCompleteScreen : MonoBehaviour
     [SerializeField]
     private Text replayText;
 
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
     private void OnEnable()
     {
         secondsToReplayCounter = secondsToReplay;
@@ -27,7 +37,8 @@ public class GameCompleteScreen : MonoBehaviour
         secondsToReplayCounter -= Time.deltaTime;
 
         if (secondsToReplayCounter < 0f) {
-            SceneLoader.instance.ReloadGameScene();
+            //SceneLoader.instance.LoadMainMenu();
+            SceneLoader.instance.LoadGameScene();
         }
     }
 
@@ -38,6 +49,6 @@ public class GameCompleteScreen : MonoBehaviour
 
     private string FormatTimeToReplay()
     {
-        return $"Rejugando en\n{Mathf.Min(secondsToReplay, secondsToReplayCounter + 1).ToString("0")}";
+        return $"Volviendo al menú en\n{Mathf.Min(secondsToReplay, secondsToReplayCounter + 1).ToString("0")}";
     }
 }

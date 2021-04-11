@@ -13,6 +13,16 @@ public class GameFailedScreen : MonoBehaviour
     [SerializeField]
     private Text retryText;
 
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void OnEnable()
     {
         secondsToRetryCounter = secondsToRetry;
@@ -23,7 +33,9 @@ public class GameFailedScreen : MonoBehaviour
         secondsToRetryCounter -= Time.deltaTime;
 
         if (secondsToRetryCounter < 0f) {
-            SceneLoader.instance.ReloadGameScene();
+            //SceneLoader.instance.LoadMainMenu();
+            SceneLoader.instance.LoadGameScene();
+            GameController.instance.StartGame();
         }
     }
 
@@ -34,6 +46,6 @@ public class GameFailedScreen : MonoBehaviour
 
     private string FormatTimeToRetry()
     {
-        return $"Reintentando en\n{Mathf.Min(secondsToRetry, secondsToRetryCounter + 1).ToString("0")}";
+        return $"Volviendo al menú en\n{Mathf.Min(secondsToRetry, secondsToRetryCounter + 1).ToString("0")}";
     }
 }
