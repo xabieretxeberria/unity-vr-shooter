@@ -37,7 +37,6 @@ public class GameCompleteScreen : MonoBehaviour
         secondsToReplayCounter -= Time.deltaTime;
 
         if (secondsToReplayCounter < 0f) {
-            //SceneLoader.instance.LoadMainMenu();
             SceneLoader.instance.LoadGameScene();
         }
     }
@@ -49,6 +48,6 @@ public class GameCompleteScreen : MonoBehaviour
 
     private string FormatTimeToReplay()
     {
-        return $"Volviendo al menú en\n{Mathf.Min(secondsToReplay, secondsToReplayCounter + 1).ToString("0")}";
+        return $"Reiniciando en\n{Mathf.Min(secondsToReplay, secondsToReplayCounter + 1).ToString("0")}";
     }
 }

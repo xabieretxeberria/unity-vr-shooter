@@ -33,9 +33,7 @@ public class GameFailedScreen : MonoBehaviour
         secondsToRetryCounter -= Time.deltaTime;
 
         if (secondsToRetryCounter < 0f) {
-            //SceneLoader.instance.LoadMainMenu();
             SceneLoader.instance.LoadGameScene();
-            GameController.instance.StartGame();
         }
     }
 
@@ -46,6 +44,6 @@ public class GameFailedScreen : MonoBehaviour
 
     private string FormatTimeToRetry()
     {
-        return $"Volviendo al menú en\n{Mathf.Min(secondsToRetry, secondsToRetryCounter + 1).ToString("0")}";
+        return $"Reiniciando en\n{Mathf.Min(secondsToRetry, secondsToRetryCounter + 1).ToString("0")}";
     }
 }

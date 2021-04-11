@@ -7,8 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader instance;
 
-    const int MAIN_MENU_SCENE_ID = 0;
-    const int GAME_SCENE_ID = 1;
+    const int GAME_SCENE_ID = 0;
 
     private void Awake()
     {
@@ -29,10 +28,6 @@ public class SceneLoader : MonoBehaviour
     public void LoadGameScene()
     {
         SceneManager.LoadScene(GAME_SCENE_ID, LoadSceneMode.Single);
-    }
-
-    public void LoadMainMenu()
-    {
-        SceneManager.LoadScene(MAIN_MENU_SCENE_ID, LoadSceneMode.Single);
+        GameController.instance.StartGame();
     }
 }
